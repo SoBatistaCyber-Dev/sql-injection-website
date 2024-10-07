@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Products Search</title>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <div class="leftside content">
+            <h1>Vulnerable SQL Shop</h1>
+            <!--br>
+            {% if products | length < 1 %}
+            <h3>
+                There are no products in the database.
+                <br>
+                Create a new one.
+            </h3>
+            {% else %}
+            <h2>Products List</h2>
+            <table>
+                <tr>
+                    <th>Product Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+                {% for product in products %}
+                <tr>
+                    <td>{{product[0]}}</td>
+                    <td>{{product[1]}}</td>
+                    <td>{{product[2]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+            <br-->
+            <h2>Search for a Product</h2>
+            {% if search_results | length < 1 %}
+            {% else %}
+            <h2>Search Result</h2>
+            <table class="table">
+                <tr>
+                    <th scope="col">Product Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                </tr>
+                {% for search_result in search_results %}
+                <tr>
+                    <td scope="row">{{search_result[0]}}</td>
+                    <td>{{search_result[1]}}</td>
+                    <td>{{search_result[2]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+            <br>
+            <form action="/search" method="POST">
+                <input type="text" name="search" id="search" placeholder="Search">
+                <input type="submit" value="Search Product" id="btn_search">
+            </form>
+
+
+            <!--h2>Add a product List</h2>
+            <form action="/" method="POST">
+                <input type="text" name="name" id="name" placeholder="Name">
+                <input type="number" name="price" id="price" placeholder="Price">
+                <input type="submit" value="Add Product" id="btn_add">
+            </form-->
+        </div>
+    </div>
+    <div class="col">
+        <div class="rightside">
+            {% for query in query_list %}
+                <span style="color: green; line-height: 2;">{{ '[' + query[0] + ']' }}</span>
+                <span style="font-weight: bold;">{{ '- '+ query[1] }}</span>
+                <br>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+</div>
